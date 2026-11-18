@@ -1,0 +1,33 @@
+---
+# Configuracion de analisis estatico para ARCADE RESCUE.
+#
+# Los checks se activan por familia y luego se desactivan los que aportan
+# ruido en este proyecto (nombres, optimizaciones prematuras, sugerencias
+# puramente estilisticas que cubre clang-format).
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  modernize-*,
+  readability-*,
+  -modernize-use-nodiscard,
+  -modernize-use-trailing-return-type,
+  -modernize-raw-string-literal,
+  -modernize-avoid-c-arrays,
+  -modernize-use-auto,
+  -modernize-return-braced-init-list,
+  -performance-enum-size,
+  -readability-magic-numbers,
+  -readability-identifier-length,
+  -readability-identifier-naming,
+  -readability-function-cognitive-complexity,
+  -readability-convert-member-functions-to-static,
+  -readability-uppercase-literal-suffix,
+  -readability-implicit-bool-conversion,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -bugprone-exception-escape
+WarningsAsErrors: ''
+HeaderFilterRegex: '.*[\\/](include|src|tests)[\\/].*'
+FormatStyle: file
+...

@@ -1,0 +1,40 @@
+# Docker Compose para ARCADE RESCUE.
+#
+# El servicio `smoke` es el que se usa en clase: compila la imagen, ejecuta la
+# suite de pruebas durante el build y despues simula una partida headless.
+#
+#   docker compose run --rm smoke
+#
+# El servicio `play` es opcional y solo tiene sentido en Linux con servidor X11:
+# sirve para comprobar que el binario arranca dentro del contenedor, no para
+# jugar en serio (el juego grafico necesita GPU/ventana).
+
+services:
+  test:
+    build:
+      context: .
+      target: build
+    image: arcade-rescue:build
+    command: ["ctest", "--test-dir", "build", "--output-on-failure"]
+
+  smoke:
+    build:
+      context: .
+      target: runtime
+      args:
+        VERSION: "1.0.0"
+    image: arcade-rescue:local
+    command: ["--headless", "--ticks", "300", "--seed", "7"]
+
+  play:
+    profiles: ["graphical"]
+    build:
+      context: .
+      target: runtime
+    image: arcade-rescue:local
+    environment:
+      - DISPLAY=${DISPLAY}
+      - ARCADE_RESCUE_ASSETS=/usr/local/share/arcade-rescue/assets
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    command: ["--console"]
