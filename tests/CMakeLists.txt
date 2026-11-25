@@ -1,6 +1,7 @@
 add_executable(arcade_rescue_tests
   test_main.cpp
-  test_smoke.cpp)
+  test_smoke.cpp
+  test_game_rules.cpp)
 
 target_link_libraries(arcade_rescue_tests PRIVATE arcade_core)
 target_include_directories(arcade_rescue_tests PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
