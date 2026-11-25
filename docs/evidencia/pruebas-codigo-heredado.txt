@@ -1,0 +1,31 @@
+Ejecutando 9 pruebas...
+
+[ RUN  ] default_config_is_valid
+[  OK  ] default_config_is_valid
+[ RUN  ] game_starts_in_ready_state
+[  OK  ] game_starts_in_ready_state
+[ RUN  ] food_never_spawns_on_snake_body
+    [FALLO] tests/test_game_rules.cpp:57 -> comida sobre el cuerpo con semilla 1 en la comida 3
+[ FALLO] food_never_spawns_on_snake_body
+[ RUN  ] eating_adds_exactly_points_per_food
+    [FALLO] tests/test_game_rules.cpp:74 -> game.score() == 10 -> obtenido: 40, esperado: 10
+    [FALLO] tests/test_game_rules.cpp:79 -> game.score() == 20 -> obtenido: 50, esperado: 20
+[ FALLO] eating_adds_exactly_points_per_food
+[ RUN  ] reaching_food_to_win_ends_in_victory
+    [FALLO] tests/test_game_rules.cpp:93 -> CHECK fallo: game.state() == GameState::Victory
+[ FALLO] reaching_food_to_win_ends_in_victory
+[ RUN  ] leaving_the_grid_ends_the_game
+    [FALLO] tests/test_game_rules.cpp:111 -> CHECK fallo: game.state() == GameState::GameOver
+[ FALLO] leaving_the_grid_ends_the_game
+[ RUN  ] hitting_own_body_ends_the_game
+    [FALLO] tests/test_game_rules.cpp:129 -> CHECK fallo: game.state() == GameState::GameOver
+[ FALLO] hitting_own_body_ends_the_game
+[ RUN  ] following_own_tail_is_allowed
+[  OK  ] following_own_tail_is_allowed
+[ RUN  ] reverse_turn_is_rejected
+    [FALLO] tests/test_game_rules.cpp:155 -> CHECK fallo: !game.requestDirection(Direction::Left)
+    [FALLO] tests/test_game_rules.cpp:158 -> CHECK fallo: game.direction() == Direction::Right
+    [FALLO] tests/test_game_rules.cpp:162 -> CHECK fallo: !game.requestDirection(Direction::Down)
+[ FALLO] reverse_turn_is_rejected
+
+Resultado: 3/9 pruebas correctas, 9 comprobaciones fallidas
