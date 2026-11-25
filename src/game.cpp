@@ -124,8 +124,8 @@ bool Game::placeFood(Point cell) noexcept {
 }
 
 bool Game::isInside(Point point) const noexcept {
-  return point.x >= 0 && point.y >= 0 && point.x <= config_.gridWidth &&
-         point.y <= config_.gridHeight;
+  return point.x >= 0 && point.y >= 0 && point.x < config_.gridWidth &&
+         point.y < config_.gridHeight;
 }
 
 bool Game::isOccupied(Point point) const noexcept {
