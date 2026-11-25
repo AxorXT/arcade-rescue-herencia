@@ -1,3 +1,23 @@
 # Binarios
 *.exe
 *.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.pdb
+
+# Carpetas del build
+build/
+build-*/
+out/
+
+# Secretos
+.env
+*.pem
+*.key
+
+# Editors
+.vs/
+.vscode/
