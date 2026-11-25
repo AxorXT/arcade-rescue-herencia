@@ -56,8 +56,8 @@ Esto salió de leer `CMakeLists.txt`, `Dockerfile`, `README.md` y `tests/`. Son 
 | | Persona | Rol | Es dueño de… |
 |:-:|---|---|---|
 | 🔵 | **A:** ___Diego___ | Build master y CI | `CMakeLists.txt` · `.github/workflows/ci.yml` · `.clang-format` · `.clang-tidy` |
-| 🟠 | **B:** ___Angel___ | QA y Game Rescue | `src/` · `include/` · `tests/` · `docs/investigacion.md` |
-| 🟢 | **C:** ___Claudio___ | Release, Docker y Pages | `Dockerfile` · `.github/workflows/release.yml` y `docker.yml` · `docs/` (sitio) · `README.md` |
+| 🟠 | **B:** ___Claudio___ | QA y Game Rescue | `src/` · `include/` · `tests/` · `docs/investigacion.md` |
+| 🟢 | **C:** ___Angel___ | Release, Docker y Pages | `Dockerfile` · `.github/workflows/release.yml` y `docker.yml` · `docs/` (sitio) · `README.md` |
 
 **Reglas para no pisarse:**
 
