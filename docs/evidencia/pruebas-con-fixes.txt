@@ -1,0 +1,22 @@
+Ejecutando 9 pruebas...
+
+[ RUN  ] default_config_is_valid
+[  OK  ] default_config_is_valid
+[ RUN  ] game_starts_in_ready_state
+[  OK  ] game_starts_in_ready_state
+[ RUN  ] food_never_spawns_on_snake_body
+[  OK  ] food_never_spawns_on_snake_body
+[ RUN  ] eating_adds_exactly_points_per_food
+[  OK  ] eating_adds_exactly_points_per_food
+[ RUN  ] reaching_food_to_win_ends_in_victory
+[  OK  ] reaching_food_to_win_ends_in_victory
+[ RUN  ] leaving_the_grid_ends_the_game
+[  OK  ] leaving_the_grid_ends_the_game
+[ RUN  ] hitting_own_body_ends_the_game
+[  OK  ] hitting_own_body_ends_the_game
+[ RUN  ] following_own_tail_is_allowed
+[  OK  ] following_own_tail_is_allowed
+[ RUN  ] reverse_turn_is_rejected
+[  OK  ] reverse_turn_is_rejected
+
+Resultado: 9/9 pruebas correctas
