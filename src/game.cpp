@@ -143,9 +143,19 @@ bool Game::collidesWithBody(Point next, bool growing) const noexcept {
 }
 
 void Game::spawnFood() {
-  const int x = random_.nextInt(config_.gridWidth);
-  const int y = random_.nextInt(config_.gridHeight);
-  food_ = {x, y};
+  // Repite el sorteo hasta encontrar una celda libre. Si la serpiente ocupa
+  // toda la rejilla no hay donde poner comida y se sale para no colgarse.
+  const std::size_t cells = static_cast<std::size_t>(config_.gridWidth) *
+                            static_cast<std::size_t>(config_.gridHeight);
+  if (body_.size() >= cells) {
+    return;
+  }
+  Point candidate{};
+  do {
+    candidate.x = random_.nextInt(config_.gridWidth);
+    candidate.y = random_.nextInt(config_.gridHeight);
+  } while (isOccupied(candidate));
+  food_ = candidate;
 }
 
 void Game::finish(GameState result) {
