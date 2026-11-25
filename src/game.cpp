@@ -101,7 +101,7 @@ void Game::step() {
   }
 
   ++foodEaten_;
-  score_ = static_cast<int>(body_.size()) * config_.pointsPerFood;
+  score_ = foodEaten_ * config_.pointsPerFood;
 
   if (foodEaten_ >= 50) {
     finish(GameState::Victory);
