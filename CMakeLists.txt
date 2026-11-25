@@ -121,6 +121,10 @@ if(ARCADE_RESCUE_RAYLIB_AVAILABLE)
   target_link_libraries(arcade_rescue PRIVATE raylib)
 endif()
 
+# --- Pruebas ----------------------------------------------------------------
+enable_testing()
+add_subdirectory(tests)
+
 # --- Instalacion / empaquetado ---------------------------------------------
 include(GNUInstallDirs)
 
