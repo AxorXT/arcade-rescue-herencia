@@ -133,7 +133,9 @@ bool Game::isOccupied(Point point) const noexcept {
 }
 
 bool Game::collidesWithBody(Point next, bool growing) const noexcept {
-  const std::size_t checked = body_.size() - 2;
+  // Si no crece, la cola se mueve en este tick y su celda queda libre, asi
+  // que no cuenta como choque. Si crece, la cola se queda y si cuenta.
+  const std::size_t checked = growing ? body_.size() : body_.size() - 1;
   for (std::size_t index = 0; index < checked; ++index) {
     if (body_[index] == next) {
       return true;
