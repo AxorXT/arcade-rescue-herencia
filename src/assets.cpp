@@ -24,6 +24,24 @@ bool isRegularFile(const fs::path& path) {
   return fs::is_regular_file(path, error);
 }
 
+// Lee una variable de entorno. MSVC marca std::getenv como inseguro (C4996),
+// por eso en Windows se usa _dupenv_s.
+std::string environmentVariable(const char* name) {
+#if defined(_MSC_VER)
+  char* value = nullptr;
+  std::size_t length = 0;
+  if (_dupenv_s(&value, &length, name) != 0 || value == nullptr) {
+    return {};
+  }
+  std::string result(value);
+  std::free(value);
+  return result;
+#else
+  const char* value = std::getenv(name);
+  return value != nullptr ? std::string(value) : std::string{};
+#endif
+}
+
 }  // namespace
 
 std::string executableDirectory() {
@@ -59,11 +77,29 @@ std::string findAsset(const std::string& relativePath, const std::string& explic
     return {};
   }
 
-  const fs::path candidate = explicitDirectory.empty()
-                                 ? fs::path("assets") / relativePath
-                                 : fs::path(explicitDirectory) / relativePath;
-  if (isRegularFile(candidate)) {
-    return candidate.string();
+  // Orden de busqueda documentado en assets.hpp.
+  std::vector<fs::path> directories;
+  if (!explicitDirectory.empty()) {
+    directories.emplace_back(explicitDirectory);
+  }
+  const std::string fromEnvironment = environmentVariable("ARCADE_RESCUE_ASSETS");
+  if (!fromEnvironment.empty()) {
+    directories.emplace_back(fromEnvironment);
+  }
+  directories.emplace_back("assets");
+  directories.emplace_back(fs::path("..") / "assets");
+  directories.emplace_back(fs::path("..") / ".." / "assets");
+  const std::string exeDirectory = executableDirectory();
+  if (!exeDirectory.empty()) {
+    directories.push_back(fs::path(exeDirectory) / "assets");
+    directories.push_back(fs::path(exeDirectory) / ".." / "share" / "arcade-rescue" / "assets");
+  }
+
+  for (const fs::path& directory : directories) {
+    const fs::path candidate = directory / relativePath;
+    if (isRegularFile(candidate)) {
+      return candidate.string();
+    }
   }
   return {};
 }
