@@ -103,7 +103,7 @@ void Game::step() {
   ++foodEaten_;
   score_ = foodEaten_ * config_.pointsPerFood;
 
-  if (foodEaten_ >= 50) {
+  if (foodEaten_ >= config_.foodToWin) {
     finish(GameState::Victory);
     return;
   }
