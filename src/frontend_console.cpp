@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include "arcade/pilot.hpp"
 #include "arcade/version.hpp"
