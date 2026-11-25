@@ -22,7 +22,7 @@ constexpr bool operator!=(Point lhs, Point rhs) noexcept {
 
 enum class Direction { Up, Down, Left, Right };
 
-bool isOpposite(Direction lhs, Direction rhs) noexcept {
+constexpr bool isOpposite(Direction lhs, Direction rhs) noexcept {
   return (lhs == Direction::Up && rhs == Direction::Down) ||
          (lhs == Direction::Down && rhs == Direction::Up) ||
          (lhs == Direction::Left && rhs == Direction::Right) ||
