@@ -16,7 +16,7 @@ option(ARCADE_RESCUE_FETCH_RAYLIB "Descargar raylib con FetchContent si no esta 
 option(ARCADE_RESCUE_WERROR "Tratar los warnings del compilador como errores" OFF)
 option(ARCADE_RESCUE_SANITIZERS "Activar AddressSanitizer/UBSan (GCC/Clang)" OFF)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
